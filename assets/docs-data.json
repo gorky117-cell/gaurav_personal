@@ -24,6 +24,18 @@
     "url": "./investor-materials/ai-for-all-architecture-note.html"
   },
   {
+    "id": "pdf-001",
+    "group": "Primary Sequence",
+    "groupSubtitle": "Start with the visual deck, then move into the technical and commercial material.",
+    "variant": "memo",
+    "badge": "PDF",
+    "meta": "Market thesis",
+    "title": "Global AI Access Gap",
+    "subtitle": "Why AI must be optimized for data-poor smartphone users, not only the top 1%",
+    "description": "This note explains the scale problem in AI, the access gap in emerging markets, and why AI-for-All uses edge-cloud orchestration to route most low-token queries on-device and cut costs by 50-80%.",
+    "url": "./investor-materials/global-ai-access-gap.pdf"
+  },
+  {
     "id": "contact-001",
     "group": "Founder Access",
     "groupSubtitle": "Share direct contact details and company links without forcing investors to search elsewhere.",
