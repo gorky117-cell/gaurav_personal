@@ -265,10 +265,36 @@
           }, 20, 400);
         }
 
+        function enhanceContactLinks() {
+          runUntilDone(function () {
+            const footer = document.getElementById("contact");
+            if (!footer) return false;
+
+            const links = Array.from(footer.querySelectorAll("a"));
+            if (!links.length) return false;
+
+            links.forEach(function (link) {
+              const href = link.getAttribute("href") || "";
+              link.classList.add("contact-link-enhanced");
+              link.style.pointerEvents = "auto";
+              link.style.position = "relative";
+              link.style.zIndex = "2";
+
+              if (href.indexOf("linkedin.com") >= 0 || href.indexOf("http") === 0) {
+                link.setAttribute("target", "_blank");
+                link.setAttribute("rel", "noopener noreferrer");
+              }
+            });
+
+            return true;
+          }, 20, 400);
+        }
+
         installDocsEnhancer();
         updateHeroCopy();
         removeDuplicateContactButton();
         removeDuplicateFooterIcons();
+        enhanceContactLinks();
       })();
     </script>
     <script data-pplx-inline-edit>

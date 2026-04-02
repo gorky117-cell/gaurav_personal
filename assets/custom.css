@@ -26,6 +26,12 @@ canvas {
   height: auto;
 }
 
+a,
+button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(34, 211, 238, 0.18);
+}
+
 @media (max-width: 767px) {
   html {
     font-size: 15px;
@@ -143,6 +149,11 @@ canvas {
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
+.investor-card,
+.investor-card * {
+  pointer-events: auto;
+}
+
 .investor-card:hover {
   transform: translateY(-3px);
   border-color: hsl(var(--primary) / 0.45);
@@ -218,6 +229,37 @@ canvas {
   line-height: 1;
 }
 
+#contact a,
+.contact-link-enhanced {
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+#contact .contact-link-enhanced {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+}
+
+#contact {
+  scroll-margin-top: 5rem;
+}
+
+#contact .max-w-6xl {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+#contact .grid {
+  align-items: start;
+}
+
+#contact .mt-12.pt-6 {
+  margin-top: 2rem;
+}
+
 @media (max-width: 1023px) {
   .investor-card {
     grid-column: span 6;
@@ -234,13 +276,77 @@ canvas {
     grid-template-columns: 1fr;
   }
 
+  .investor-docs-section {
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+  }
+
+  .investor-docs-wrap {
+    padding: 0 1rem;
+  }
+
+  .investor-docs-intro {
+    margin-bottom: 2rem;
+  }
+
+  .investor-section-title {
+    font-size: clamp(1.9rem, 10vw, 2.6rem);
+  }
+
   .investor-card {
     grid-column: auto;
-    min-height: 15rem;
+    min-height: auto;
+    padding: 1rem;
+    border-radius: 1rem;
   }
 
   .investor-card-deck {
     aspect-ratio: auto;
-    min-height: 15rem;
+    min-height: auto;
+  }
+
+  #hero .max-w-6xl,
+  #architecture .max-w-6xl,
+  #market .max-w-6xl,
+  #docs .max-w-6xl,
+  #contact .max-w-6xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  #hero h1 {
+    line-height: 0.95;
+  }
+
+  #hero p,
+  #market p,
+  #contact p,
+  #contact a {
+    line-height: 1.6;
+  }
+
+  #contact {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  #contact .grid {
+    gap: 1.75rem;
+  }
+
+  #contact .contact-link-enhanced {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  #contact .mt-12.pt-6 {
+    gap: 0.75rem;
+    padding-top: 1rem;
+  }
+
+  #contact .mt-12.pt-6 .flex.items-center.gap-4 {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
   }
 }
