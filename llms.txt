@@ -1,0 +1,48 @@
+# AI-for-All
+
+> Edge-first AI infrastructure for the next billion users.
+
+## About
+
+AI-for-All is building affordable AI infrastructure that eliminates the GPU tax. Founded by Gaurav Kumar Singh, the company's 70/20/10 architecture routes 70% of AI queries to on-device edge models, 20% to optimized cloud endpoints, and only 10% to full LLM fallback — reducing inference costs by approximately 70%.
+
+## Founder
+
+- Name: Gaurav Kumar Singh
+- Email: gaurav@aiforall.ltd
+- LinkedIn: https://www.linkedin.com/in/gaurav-kumar-s-b9347129/
+- Website: https://www.aiforall.ltd
+
+## Problem
+
+- GPU cloud inference costs $0.01–$0.10 per query, making AI inaccessible at scale
+- Users in developing markets pay 5–10x more per MB relative to income
+- Current AI requires constant cloud connectivity, excluding billions with intermittent internet
+
+## Solution: 70/20/10 Architecture
+
+- 70% Edge Processing: Lightweight models run directly on-device with zero latency and zero data cost
+- 20% Optimized Cloud: Compressed queries routed to cost-optimized cloud endpoints only when needed
+- 10% LLM Fallback: Complex queries fall back to full LLMs via intelligent routing
+
+## Key Metrics
+
+- Latency: <50ms (edge-first response)
+- Cost Reduction: ~70% vs. cloud-only inference
+- Privacy: Data stays on-device
+
+## Market
+
+- 500M+ smartphone users today with limited data access using AI-adjacent apps
+- Projected 1B+ users by 2030 in India, SEA, Africa, and Latin America
+
+## Current Stage
+
+- Cloud Inference: Live
+- Routing Engine: Validated
+- Edge Models: In Development
+
+## Contact
+
+Email: gaurav@aiforall.ltd
+Website: https://www.aiforall.ltd
