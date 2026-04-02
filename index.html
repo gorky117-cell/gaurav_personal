@@ -225,6 +225,26 @@
           setTimeout(attempt, 2500);
         }
 
+        function updateHeroCopy() {
+          const apply = function () {
+            const hero = document.getElementById("hero");
+            if (!hero) return;
+
+            const paragraph = hero.querySelector("p");
+            if (paragraph) {
+              paragraph.textContent =
+                "Edge-first AI infrastructure powered by intelligent edge-cloud orchestration. Cutting inference cost through smarter routing across device and cloud.";
+            }
+          };
+
+          const observer = new MutationObserver(apply);
+          observer.observe(document.documentElement, { childList: true, subtree: true });
+          window.addEventListener("load", apply);
+          document.addEventListener("DOMContentLoaded", apply);
+          setTimeout(apply, 1200);
+          setTimeout(apply, 2500);
+        }
+
         function removeDuplicateContactButton() {
           const cleanup = function () {
             const buttons = Array.from(document.querySelectorAll("a"));
@@ -282,6 +302,7 @@
         }
 
         installDocsEnhancer();
+        updateHeroCopy();
         removeDuplicateContactButton();
         removeDuplicateFooterIcons();
       })();
