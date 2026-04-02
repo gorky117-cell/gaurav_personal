@@ -245,8 +245,40 @@
           setTimeout(cleanup, 2500);
         }
 
+        function removeDuplicateFooterIcons() {
+          const cleanup = function () {
+            const footer = document.getElementById("contact");
+            if (!footer) return;
+
+            const iconRow = Array.from(footer.querySelectorAll("div")).find(function (node) {
+              const links = node.querySelectorAll("a");
+              if (links.length !== 3) return false;
+              const hrefs = Array.from(links).map(function (link) {
+                return link.getAttribute("href") || "";
+              });
+              return (
+                hrefs.some(function (href) { return href.indexOf("linkedin.com") >= 0; }) &&
+                hrefs.some(function (href) { return href.indexOf("mailto:") === 0; }) &&
+                hrefs.some(function (href) { return href.indexOf("aiforall.ltd") >= 0; })
+              );
+            });
+
+            if (iconRow) {
+              iconRow.remove();
+            }
+          };
+
+          const observer = new MutationObserver(cleanup);
+          observer.observe(document.documentElement, { childList: true, subtree: true });
+          window.addEventListener("load", cleanup);
+          document.addEventListener("DOMContentLoaded", cleanup);
+          setTimeout(cleanup, 1200);
+          setTimeout(cleanup, 2500);
+        }
+
         installDocsEnhancer();
         removeDuplicateContactButton();
+        removeDuplicateFooterIcons();
       })();
     </script>
     <script data-pplx-inline-edit>
