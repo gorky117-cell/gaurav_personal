@@ -226,7 +226,27 @@
           setTimeout(attempt, 2500);
         }
 
+        function removeDuplicateContactButton() {
+          const cleanup = function () {
+            const buttons = Array.from(document.querySelectorAll("a"));
+            const duplicate = buttons.find(function (link) {
+              return link.textContent && link.textContent.trim() === "Get in Touch";
+            });
+            if (duplicate) {
+              duplicate.remove();
+            }
+          };
+
+          const observer = new MutationObserver(cleanup);
+          observer.observe(document.documentElement, { childList: true, subtree: true });
+          window.addEventListener("load", cleanup);
+          document.addEventListener("DOMContentLoaded", cleanup);
+          setTimeout(cleanup, 1200);
+          setTimeout(cleanup, 2500);
+        }
+
         installDocsEnhancer();
+        removeDuplicateContactButton();
       })();
     </script>
     <script data-pplx-inline-edit>
