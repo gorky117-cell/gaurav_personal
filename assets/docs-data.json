@@ -33,7 +33,7 @@
     "title": "Global AI Access Gap",
     "subtitle": "Why AI must be optimized for data-poor smartphone users, not only the top 1%",
     "description": "This note explains the scale problem in AI, the access gap in emerging markets, and why AI-for-All uses edge-cloud orchestration to route most low-token queries on-device and cut costs by 50-80%.",
-    "url": "./investor-materials/global-ai-access-gap.pdf"
+    "url": "./investor-materials/global-ai-access-gap.html"
   },
   {
     "id": "contact-001",

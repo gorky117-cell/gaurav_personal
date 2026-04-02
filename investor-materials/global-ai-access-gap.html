@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
+    <title>Global AI Access Gap | AI-for-All</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #05080d;
+        --card: #0c121b;
+        --card-2: #111a25;
+        --text: #eef5ff;
+        --muted: #9bb0c8;
+        --line: rgba(143, 169, 199, 0.18);
+        --primary: #22d3ee;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top, rgba(34, 211, 238, 0.12), transparent 28%),
+          linear-gradient(180deg, #071019 0%, var(--bg) 100%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 32px 20px 80px;
+      }
+
+      .hero {
+        max-width: 920px;
+        margin: 0 auto 28px;
+        text-align: center;
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 12px;
+        border: 1px solid rgba(34, 211, 238, 0.18);
+        border-radius: 999px;
+        background: rgba(34, 211, 238, 0.08);
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 18px 0 12px;
+        font-size: clamp(2.4rem, 5.8vw, 4.8rem);
+        line-height: 1.04;
+        letter-spacing: -0.04em;
+      }
+
+      .subtitle {
+        margin: 0 auto;
+        max-width: 760px;
+        color: var(--muted);
+        font-size: clamp(1rem, 2vw, 1.18rem);
+        line-height: 1.75;
+      }
+
+      .panel {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.7fr);
+        gap: 20px;
+        align-items: start;
+      }
+
+      .viewer {
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.26);
+        opacity: 0;
+        transform: translateX(-48px);
+        animation: slideIn 720ms ease forwards;
+      }
+
+      .viewer-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .viewer-label {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .viewer-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .open-pdf {
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(34, 211, 238, 0.12);
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .pdf-frame {
+        width: 100%;
+        height: min(76vh, 960px);
+        border: 0;
+        display: block;
+        background: white;
+      }
+
+      .side {
+        display: grid;
+        gap: 16px;
+      }
+
+      .note {
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: var(--card);
+      }
+
+      .note h2 {
+        margin: 0 0 10px;
+        font-size: 1.45rem;
+      }
+
+      .note p,
+      .note li {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .note ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .site-footer {
+        margin-top: 42px;
+        padding-top: 26px;
+        border-top: 1px solid var(--line);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .footer-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 999px;
+        background: var(--primary);
+        box-shadow: 0 0 18px rgba(34, 211, 238, 0.5);
+      }
+
+      .footer-title {
+        margin: 0 0 12px;
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+
+      .footer-copy,
+      .footer-link,
+      .footer-small {
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      .footer-link {
+        display: block;
+      }
+
+      .footer-link:hover {
+        color: var(--text);
+      }
+
+      .footer-bottom {
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(143, 169, 199, 0.12);
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-48px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @media (max-width: 980px) {
+        .panel {
+          grid-template-columns: 1fr;
+        }
+
+        .pdf-frame {
+          height: 72vh;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .shell {
+          padding: 24px 14px 60px;
+        }
+
+        .viewer-top {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .pdf-frame {
+          height: 68vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <span class="kicker">Investor Material</span>
+        <h1>Global AI Access Gap</h1>
+        <p class="subtitle">
+          The AI industry has a scale problem. This note explains why the next wave of AI growth
+          depends on serving data-poor smartphone users, and how AI-for-All uses edge-cloud
+          orchestration to make that economically viable.
+        </p>
+      </section>
+
+      <section class="panel">
+        <article class="viewer">
+          <div class="viewer-top">
+            <div class="viewer-label">Market thesis PDF</div>
+            <div class="viewer-actions">
+              <span>Heading, subheading, then full document</span>
+              <a class="open-pdf" href="./global-ai-access-gap.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+            </div>
+          </div>
+          <iframe class="pdf-frame" src="./global-ai-access-gap.pdf#view=FitH"></iframe>
+        </article>
+
+        <aside class="side">
+          <section class="note">
+            <h2>The problem</h2>
+            <p>
+              AI platforms are still largely designed for users with premium devices, strong
+              connectivity and the ability to absorb high inference costs.
+            </p>
+          </section>
+
+          <section class="note">
+            <h2>The insight</h2>
+            <p>
+              Millions of users in emerging markets own smartphones with enough hardware capacity,
+              but remain excluded by data cost and cloud-heavy AI economics.
+            </p>
+          </section>
+
+          <section class="note">
+            <h2>The solution</h2>
+            <ul>
+              <li>Route a large share of low-token queries on-device.</li>
+              <li>Use cloud only when complexity truly requires it.</li>
+              <li>Reduce cost by roughly 50-80% for scalable access.</li>
+            </ul>
+          </section>
+        </aside>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-grid">
+          <section>
+            <div class="footer-brand">
+              <span class="footer-dot"></span>
+              <span>AI-for-All</span>
+            </div>
+            <a class="footer-link" href="https://www.aiforall.ltd" target="_blank" rel="noopener noreferrer">www.aiforall.ltd</a>
+            <p class="footer-copy">Edge-first AI infrastructure reducing GPU costs for the next billion users.</p>
+          </section>
+
+          <section>
+            <h3 class="footer-title">Founder</h3>
+            <div class="footer-small">Gaurav Kumar Singh</div>
+            <a class="footer-link" href="mailto:gaurav@aiforall.ltd">gaurav@aiforall.ltd</a>
+            <a class="footer-link" href="https://www.linkedin.com/in/gaurav-kumar-s-b9347129/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+          </section>
+
+          <section>
+            <h3 class="footer-title">Intellectual Property</h3>
+            <div class="footer-small">Patent Filed (Complete Specification)</div>
+          </section>
+        </div>
+
+        <div class="footer-bottom">© 2026 Gaurav Kumar Singh. All rights reserved.</div>
+      </footer>
+    </main>
+  </body>
+</html>
