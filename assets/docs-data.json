@@ -1,32 +1,16 @@
 [
   {
-    "id": "deck-001",
-    "group": "Primary Sequence",
-    "groupSubtitle": "Start with the visual deck, then move into the technical and commercial material.",
+    "id": "ppt-001",
     "variant": "deck",
-    "badge": "16:9 Deck",
-    "meta": "Founder presentation",
-    "title": "AI-for-All Investor Deck",
-    "subtitle": "Vision, problem, architecture, market and business thesis",
-    "description": "Use this first in investor calls. It is structured for a clean narrative from the cost crisis in AI to the 70/20/10 architecture and market opportunity.",
-    "url": "./investor-materials/ai-for-all-investor-brief.html"
-  },
-  {
-    "id": "memo-001",
-    "group": "Primary Sequence",
-    "groupSubtitle": "Start with the visual deck, then move into the technical and commercial material.",
-    "variant": "memo",
-    "badge": "Brief",
-    "meta": "Technical note",
-    "title": "Architecture & Product Brief",
-    "subtitle": "How routing, edge inference and cloud fallback work together",
-    "description": "A tighter technical note for investors who want the system logic, cost reduction mechanics and the product deployment path in one place.",
-    "url": "./investor-materials/ai-for-all-architecture-note.html"
+    "badge": "PPT",
+    "meta": "Research Desk slides",
+    "title": "Why the Future of AI Will Be Decided at the Edge",
+    "subtitle": "Check the Research Desk slides below for our 2024–2030 view on how this shift is happening and could redefine global AI access.",
+    "description": "Most of the AI race is still being framed around bigger models, massive GPU clusters, and rising cloud bills.",
+    "url": "./investor-materials/why-the-future-of-ai-will-be-decided-at-the-edge.html"
   },
   {
     "id": "pdf-001",
-    "group": "Primary Sequence",
-    "groupSubtitle": "Start with the visual deck, then move into the technical and commercial material.",
     "variant": "memo",
     "badge": "PDF",
     "meta": "Market thesis",
@@ -34,5 +18,15 @@
     "subtitle": "Why AI must be optimized for data-poor smartphone users, not only the top 1%",
     "description": "This note explains the scale problem in AI, the access gap in emerging markets, and why AI-for-All uses edge-cloud orchestration to route most low-token queries on-device and cut costs by 50-80%.",
     "url": "./investor-materials/global-ai-access-gap.html"
+  },
+  {
+    "id": "pdf-002",
+    "variant": "deck",
+    "badge": "PDF",
+    "meta": "Architecture breakdown",
+    "title": "Why Unit Economics Will Decide the Winner of the AI Race",
+    "subtitle": "Most AI platforms are built for the 1%\u2014users with high-end hardware and unlimited data. But the next billion users operate in a different reality.",
+    "description": "Check the slides below for the architectural breakdown of how we are making intelligence a sustainable utility for everyone.",
+    "url": "./investor-materials/why-unit-economics-will-decide-the-winner-of-the-ai-race.html"
   }
 ]

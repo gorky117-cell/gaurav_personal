@@ -100,16 +100,6 @@
           }
         }
 
-        function groupDocs(items) {
-          const groups = new Map();
-          items.forEach((item) => {
-            const key = item.group || "Investor Materials";
-            if (!groups.has(key)) groups.set(key, []);
-            groups.get(key).push(item);
-          });
-          return Array.from(groups.entries());
-        }
-
         function buildCard(item) {
           const card = document.createElement("a");
           card.className = "investor-card";
@@ -169,84 +159,70 @@
             '<h2 class="investor-section-title">Presentations and notes</h2>';
           wrap.appendChild(intro);
 
-          groupDocs(items).forEach(function (entry) {
-            const groupName = entry[0];
-            const groupItems = entry[1];
-
-            const group = document.createElement("section");
-            group.className = "investor-docs-group";
-
-            const header = document.createElement("div");
-            header.className = "investor-docs-group-header";
-            header.innerHTML =
-              "<div>" +
-              '<h3 class="investor-docs-group-title">' +
-              groupName +
-              "</h3>" +
-              '<p class="investor-docs-group-subtitle">' +
-              (groupItems[0].groupSubtitle || "Open each item in sequence during an investor conversation.") +
-              "</p>" +
-              "</div>" +
-              '<span class="investor-group-count">' +
-              groupItems.length +
-              "</span>";
-
-            const grid = document.createElement("div");
-            grid.className = "investor-docs-grid";
-            groupItems.forEach(function (item) {
-              grid.appendChild(buildCard(item));
-            });
-
-            group.appendChild(header);
-            group.appendChild(grid);
-            wrap.appendChild(group);
+          const grid = document.createElement("div");
+          grid.className = "investor-docs-grid";
+          items.forEach(function (item) {
+            grid.appendChild(buildCard(item));
           });
+          wrap.appendChild(grid);
 
           section.appendChild(wrap);
+        }
+
+        function runUntilDone(task, maxAttempts, delay) {
+          let attempts = 0;
+
+          const tick = async function () {
+            attempts += 1;
+            const done = await task();
+            if (!done && attempts < maxAttempts) {
+              setTimeout(tick, delay);
+            }
+          };
+
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", tick, { once: true });
+          } else {
+            tick();
+          }
         }
 
         function installDocsEnhancer() {
           let rendered = false;
 
-          const attempt = async function () {
+          runUntilDone(async function () {
             const section = document.getElementById("docs");
-            if (!section || rendered) return;
+            if (!section || rendered) return false;
+
             const items = await loadDocsData();
-            if (!items.length) return;
+            if (!items.length) return false;
+
             renderInvestorDocs(section, items);
             rendered = true;
-          };
-
-          const observer = new MutationObserver(attempt);
-          observer.observe(document.documentElement, { childList: true, subtree: true });
-          window.addEventListener("load", attempt);
-          document.addEventListener("DOMContentLoaded", attempt);
-          setTimeout(attempt, 1200);
-          setTimeout(attempt, 2500);
+            return true;
+          }, 20, 400);
         }
 
         function updateHeroCopy() {
-          const apply = function () {
+          runUntilDone(function () {
             const hero = document.getElementById("hero");
-            if (!hero) return;
+            if (!hero) return false;
 
             const paragraph = hero.querySelector("p");
             if (paragraph) {
               paragraph.textContent =
                 "Edge-first AI infrastructure powered by intelligent edge-cloud orchestration. Cutting inference cost through smarter routing across device and cloud.";
+              return true;
             }
-          };
-
-          const observer = new MutationObserver(apply);
-          observer.observe(document.documentElement, { childList: true, subtree: true });
-          window.addEventListener("load", apply);
-          document.addEventListener("DOMContentLoaded", apply);
-          setTimeout(apply, 1200);
-          setTimeout(apply, 2500);
+            return false;
+          }, 20, 400);
         }
 
         function removeDuplicateContactButton() {
-          const cleanup = function () {
+          runUntilDone(function () {
+            const footer = document.getElementById("contact");
+            if (!footer) return false;
+
             const buttons = Array.from(document.querySelectorAll("a"));
             const duplicate = buttons.find(function (link) {
               return link.textContent && link.textContent.trim() === "Get in Touch";
@@ -254,20 +230,14 @@
             if (duplicate) {
               duplicate.remove();
             }
-          };
-
-          const observer = new MutationObserver(cleanup);
-          observer.observe(document.documentElement, { childList: true, subtree: true });
-          window.addEventListener("load", cleanup);
-          document.addEventListener("DOMContentLoaded", cleanup);
-          setTimeout(cleanup, 1200);
-          setTimeout(cleanup, 2500);
+            return true;
+          }, 20, 400);
         }
 
         function removeDuplicateFooterIcons() {
-          const cleanup = function () {
+          runUntilDone(function () {
             const footer = document.getElementById("contact");
-            if (!footer) return;
+            if (!footer) return false;
 
             const iconRow = Array.from(footer.querySelectorAll("div")).find(function (node) {
               const directChildren = Array.from(node.children);
@@ -291,14 +261,8 @@
             if (iconRow) {
               iconRow.remove();
             }
-          };
-
-          const observer = new MutationObserver(cleanup);
-          observer.observe(document.documentElement, { childList: true, subtree: true });
-          window.addEventListener("load", cleanup);
-          document.addEventListener("DOMContentLoaded", cleanup);
-          setTimeout(cleanup, 1200);
-          setTimeout(cleanup, 2500);
+            return true;
+          }, 20, 400);
         }
 
         installDocsEnhancer();
