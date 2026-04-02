@@ -34,17 +34,5 @@
     "subtitle": "Why AI must be optimized for data-poor smartphone users, not only the top 1%",
     "description": "This note explains the scale problem in AI, the access gap in emerging markets, and why AI-for-All uses edge-cloud orchestration to route most low-token queries on-device and cut costs by 50-80%.",
     "url": "./investor-materials/global-ai-access-gap.html"
-  },
-  {
-    "id": "contact-001",
-    "group": "Founder Access",
-    "groupSubtitle": "Share direct contact details and company links without forcing investors to search elsewhere.",
-    "variant": "memo",
-    "badge": "Contact",
-    "meta": "Direct links",
-    "title": "Founder Contact Sheet",
-    "subtitle": "Email, LinkedIn, website and next-step actions",
-    "description": "A clean contact page for follow-ups after the first meeting, with direct access to your email, LinkedIn and the live AI-for-All site.",
-    "url": "./investor-materials/founder-contact-sheet.html"
   }
 ]
