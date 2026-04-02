@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI-for-All Architecture Brief</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #091019;
+        color: #eef6ff;
+        line-height: 1.7;
+      }
+      main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 32px 20px 72px;
+      }
+      .sheet {
+        background: #0f1824;
+        border: 1px solid rgba(131, 168, 208, 0.2);
+        border-radius: 24px;
+        padding: 28px;
+      }
+      .kicker {
+        color: #23d5ee;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      h1, h2 { margin: 0 0 12px; }
+      h1 { font-size: clamp(30px, 5vw, 52px); }
+      p, li { color: #a9bfd5; }
+      .section { margin-top: 24px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="sheet">
+        <div class="kicker">Technical Brief</div>
+        <h1>Architecture & Product Brief</h1>
+        <p>
+          AI-for-All routes each query to the lowest-cost layer that can satisfy the task. The
+          system reduces unnecessary cloud usage while preserving access to high-capability models
+          when the task requires it.
+        </p>
+
+        <div class="section">
+          <h2>1. Query routing</h2>
+          <p>
+            A lightweight routing layer classifies requests based on complexity, latency tolerance,
+            privacy sensitivity and network conditions. This determines whether the task is served on
+            the device, by an optimized cloud path, or by a full LLM.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>2. Why this wins</h2>
+          <ul>
+            <li>Reduces GPU cost concentration in the cloud layer.</li>
+            <li>Maintains responsiveness for common user interactions.</li>
+            <li>Improves privacy by keeping many requests local.</li>
+            <li>Expands AI access for data-constrained smartphone users.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>3. Product direction</h2>
+          <p>
+            The product direction is an infrastructure layer that can be integrated into
+            AI-enabled mobile experiences, low-data productivity tools, and consumer applications
+            serving high-volume emerging-market demand.
+          </p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

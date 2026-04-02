@@ -86,6 +86,149 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (function () {
+        const DOCS_DATA_URL = "./assets/docs-data.json";
+
+        async function loadDocsData() {
+          try {
+            const response = await fetch(DOCS_DATA_URL, { cache: "no-store" });
+            if (!response.ok) return [];
+            return await response.json();
+          } catch (error) {
+            return [];
+          }
+        }
+
+        function groupDocs(items) {
+          const groups = new Map();
+          items.forEach((item) => {
+            const key = item.group || "Investor Materials";
+            if (!groups.has(key)) groups.set(key, []);
+            groups.get(key).push(item);
+          });
+          return Array.from(groups.entries());
+        }
+
+        function buildCard(item) {
+          const card = document.createElement("a");
+          card.className = "investor-card";
+          card.href = item.url;
+          card.target = item.external ? "_blank" : "_self";
+          card.rel = item.external ? "noopener noreferrer" : "";
+
+          if (item.variant === "deck") {
+            card.classList.add("investor-card-deck");
+          }
+
+          const meta = document.createElement("div");
+          meta.className = "investor-card-meta";
+          meta.innerHTML =
+            '<span class="investor-chip">' +
+            (item.badge || "Material") +
+            "</span>" +
+            (item.meta ? '<span class="investor-meta-text">' + item.meta + "</span>" : "");
+
+          const heading = document.createElement("h3");
+          heading.className = "investor-card-title";
+          heading.textContent = item.title;
+
+          const subheading = document.createElement("p");
+          subheading.className = "investor-card-subtitle";
+          subheading.textContent = item.subtitle;
+
+          const description = document.createElement("p");
+          description.className = "investor-card-description";
+          description.textContent = item.description;
+
+          const footer = document.createElement("div");
+          footer.className = "investor-card-footer";
+          footer.innerHTML =
+            '<span class="investor-open-text">Open material</span><span class="investor-arrow">→</span>';
+
+          card.appendChild(meta);
+          card.appendChild(heading);
+          card.appendChild(subheading);
+          card.appendChild(description);
+          card.appendChild(footer);
+
+          return card;
+        }
+
+        function renderInvestorDocs(section, items) {
+          section.innerHTML = "";
+          section.classList.add("investor-docs-section");
+
+          const wrap = document.createElement("div");
+          wrap.className = "investor-docs-wrap";
+
+          const intro = document.createElement("div");
+          intro.className = "investor-docs-intro";
+          intro.innerHTML =
+            '<span class="investor-section-kicker">Investor Materials</span>' +
+            '<h2 class="investor-section-title">Decks, briefs and founder notes</h2>' +
+            '<p class="investor-section-subtitle">A clean, shareable resource shelf for investor conversations. Each item opens directly and is optimized for desktop and mobile review.</p>';
+          wrap.appendChild(intro);
+
+          groupDocs(items).forEach(function (entry) {
+            const groupName = entry[0];
+            const groupItems = entry[1];
+
+            const group = document.createElement("section");
+            group.className = "investor-docs-group";
+
+            const header = document.createElement("div");
+            header.className = "investor-docs-group-header";
+            header.innerHTML =
+              "<div>" +
+              '<h3 class="investor-docs-group-title">' +
+              groupName +
+              "</h3>" +
+              '<p class="investor-docs-group-subtitle">' +
+              (groupItems[0].groupSubtitle || "Open each item in sequence during an investor conversation.") +
+              "</p>" +
+              "</div>" +
+              '<span class="investor-group-count">' +
+              groupItems.length +
+              "</span>";
+
+            const grid = document.createElement("div");
+            grid.className = "investor-docs-grid";
+            groupItems.forEach(function (item) {
+              grid.appendChild(buildCard(item));
+            });
+
+            group.appendChild(header);
+            group.appendChild(grid);
+            wrap.appendChild(group);
+          });
+
+          section.appendChild(wrap);
+        }
+
+        function installDocsEnhancer() {
+          let rendered = false;
+
+          const attempt = async function () {
+            const section = document.getElementById("docs");
+            if (!section || rendered) return;
+            const items = await loadDocsData();
+            if (!items.length) return;
+            renderInvestorDocs(section, items);
+            rendered = true;
+          };
+
+          const observer = new MutationObserver(attempt);
+          observer.observe(document.documentElement, { childList: true, subtree: true });
+          window.addEventListener("load", attempt);
+          document.addEventListener("DOMContentLoaded", attempt);
+          setTimeout(attempt, 1200);
+          setTimeout(attempt, 2500);
+        }
+
+        installDocsEnhancer();
+      })();
+    </script>
     <script data-pplx-inline-edit>
       (function () {
         if (window === window.top) return;

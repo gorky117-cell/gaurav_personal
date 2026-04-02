@@ -1,0 +1,38 @@
+[
+  {
+    "id": "deck-001",
+    "group": "Primary Sequence",
+    "groupSubtitle": "Start with the visual deck, then move into the technical and commercial material.",
+    "variant": "deck",
+    "badge": "16:9 Deck",
+    "meta": "Founder presentation",
+    "title": "AI-for-All Investor Deck",
+    "subtitle": "Vision, problem, architecture, market and business thesis",
+    "description": "Use this first in investor calls. It is structured for a clean narrative from the cost crisis in AI to the 70/20/10 architecture and market opportunity.",
+    "url": "./investor-materials/ai-for-all-investor-brief.html"
+  },
+  {
+    "id": "memo-001",
+    "group": "Primary Sequence",
+    "groupSubtitle": "Start with the visual deck, then move into the technical and commercial material.",
+    "variant": "memo",
+    "badge": "Brief",
+    "meta": "Technical note",
+    "title": "Architecture & Product Brief",
+    "subtitle": "How routing, edge inference and cloud fallback work together",
+    "description": "A tighter technical note for investors who want the system logic, cost reduction mechanics and the product deployment path in one place.",
+    "url": "./investor-materials/ai-for-all-architecture-note.html"
+  },
+  {
+    "id": "contact-001",
+    "group": "Founder Access",
+    "groupSubtitle": "Share direct contact details and company links without forcing investors to search elsewhere.",
+    "variant": "memo",
+    "badge": "Contact",
+    "meta": "Direct links",
+    "title": "Founder Contact Sheet",
+    "subtitle": "Email, LinkedIn, website and next-step actions",
+    "description": "A clean contact page for follow-ups after the first meeting, with direct access to your email, LinkedIn and the live AI-for-All site.",
+    "url": "./investor-materials/founder-contact-sheet.html"
+  }
+]
