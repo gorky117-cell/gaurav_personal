@@ -8,45 +8,35 @@
       :root {
         color-scheme: dark;
         --bg: #05080d;
-        --card: #0c121b;
-        --card-2: #111a25;
+        --card: #11151b;
+        --line: rgba(143, 169, 199, 0.16);
         --text: #eef5ff;
-        --muted: #9bb0c8;
-        --line: rgba(143, 169, 199, 0.18);
+        --muted: #96abc1;
         --primary: #22d3ee;
       }
 
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
+      * { box-sizing: border-box; }
 
       body {
         margin: 0;
         font-family: "Segoe UI", Arial, sans-serif;
         color: var(--text);
         background:
-          radial-gradient(circle at top, rgba(34, 211, 238, 0.12), transparent 28%),
+          radial-gradient(circle at top, rgba(34, 211, 238, 0.11), transparent 28%),
           linear-gradient(180deg, #071019 0%, var(--bg) 100%);
       }
 
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
+      a { color: inherit; text-decoration: none; }
 
       .shell {
-        max-width: 1240px;
+        max-width: 1320px;
         margin: 0 auto;
-        padding: 32px 20px 80px;
+        padding: 32px 20px 64px;
       }
 
       .hero {
-        max-width: 920px;
-        margin: 0 auto 28px;
+        max-width: 980px;
+        margin: 0 auto 26px;
         text-align: center;
       }
 
@@ -65,24 +55,24 @@
       }
 
       h1 {
-        margin: 18px 0 12px;
-        font-size: clamp(2.4rem, 5.8vw, 4.8rem);
+        margin: 18px 0 10px;
+        font-size: clamp(2.6rem, 5.8vw, 4.9rem);
         line-height: 1.04;
         letter-spacing: -0.04em;
       }
 
       .subtitle {
         margin: 0 auto;
-        max-width: 760px;
+        max-width: 920px;
         color: var(--muted);
-        font-size: clamp(1rem, 2vw, 1.18rem);
+        font-size: clamp(1rem, 2vw, 1.1rem);
         line-height: 1.75;
       }
 
       .panel {
         display: grid;
-        grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.7fr);
-        gap: 20px;
+        grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.8fr);
+        gap: 22px;
         align-items: start;
       }
 
@@ -90,11 +80,11 @@
         border: 1px solid var(--line);
         border-radius: 26px;
         overflow: hidden;
-        background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+        background: #0b1118;
         box-shadow: 0 28px 80px rgba(0, 0, 0, 0.26);
         opacity: 0;
-        transform: translateX(-48px);
-        animation: slideIn 720ms ease forwards;
+        transform: translateX(-44px);
+        animation: slideIn 700ms ease forwards;
       }
 
       .viewer-top {
@@ -112,14 +102,6 @@
         font-weight: 600;
       }
 
-      .viewer-actions {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        color: var(--muted);
-        font-size: 13px;
-      }
-
       .open-pdf {
         padding: 10px 14px;
         border-radius: 999px;
@@ -130,7 +112,7 @@
 
       .pdf-frame {
         width: 100%;
-        height: min(76vh, 960px);
+        height: min(78vh, 980px);
         border: 0;
         display: block;
         background: white;
@@ -144,29 +126,26 @@
       .note {
         padding: 22px;
         border: 1px solid var(--line);
-        border-radius: 22px;
+        border-radius: 24px;
         background: var(--card);
       }
 
       .note h2 {
         margin: 0 0 10px;
-        font-size: 1.45rem;
+        color: #48d1cc;
+        font-size: 1.5rem;
       }
 
-      .note p,
-      .note li {
-        color: var(--muted);
-        line-height: 1.7;
-      }
-
-      .note ul {
+      .note p {
         margin: 0;
-        padding-left: 18px;
+        color: var(--text);
+        line-height: 1.6;
+        font-size: 0.98rem;
       }
 
       .site-footer {
-        margin-top: 42px;
-        padding-top: 26px;
+        margin-top: 38px;
+        padding-top: 24px;
         border-top: 1px solid var(--line);
       }
 
@@ -189,7 +168,7 @@
         height: 14px;
         border-radius: 999px;
         background: var(--primary);
-        box-shadow: 0 0 18px rgba(34, 211, 238, 0.5);
+        box-shadow: 0 0 18px rgba(34, 211, 238, 0.45);
       }
 
       .footer-title {
@@ -202,20 +181,15 @@
       .footer-link,
       .footer-small {
         color: var(--muted);
-        font-size: 0.95rem;
+        font-size: 0.94rem;
         line-height: 1.7;
       }
 
-      .footer-link {
-        display: block;
-      }
-
-      .footer-link:hover {
-        color: var(--text);
-      }
+      .footer-link { display: block; }
+      .footer-link:hover { color: var(--text); }
 
       .footer-bottom {
-        margin-top: 20px;
+        margin-top: 18px;
         padding-top: 16px;
         border-top: 1px solid rgba(143, 169, 199, 0.12);
         color: var(--muted);
@@ -223,43 +197,20 @@
       }
 
       @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateX(-48px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
+        from { opacity: 0; transform: translateX(-44px); }
+        to { opacity: 1; transform: translateX(0); }
       }
 
       @media (max-width: 980px) {
-        .panel {
-          grid-template-columns: 1fr;
-        }
-
-        .pdf-frame {
-          height: 72vh;
-        }
-
-        .footer-grid {
-          grid-template-columns: 1fr;
-        }
+        .panel { grid-template-columns: 1fr; }
+        .pdf-frame { height: 72vh; }
+        .footer-grid { grid-template-columns: 1fr; }
       }
 
       @media (max-width: 640px) {
-        .shell {
-          padding: 24px 14px 60px;
-        }
-
-        .viewer-top {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .pdf-frame {
-          height: 68vh;
-        }
+        .shell { padding: 24px 14px 56px; }
+        .viewer-top { flex-direction: column; align-items: flex-start; }
+        .pdf-frame { height: 68vh; }
       }
     </style>
   </head>
@@ -267,50 +218,47 @@
     <main class="shell">
       <section class="hero">
         <span class="kicker">Investor Material</span>
-        <h1>Global AI Access Gap</h1>
+        <h1>TAM: Bridging the Global AI Access Gap</h1>
         <p class="subtitle">
-          The AI industry has a scale problem. This note explains why the next wave of AI growth
-          depends on serving data-poor smartphone users, and how AI-for-All uses edge-cloud
-          orchestration to make that economically viable.
+          The AI industry has a scale problem. While almost a billion people are already using AI,
+          most platforms are still architected for the 1%: users with high-end hardware and
+          unlimited data. In emerging markets, millions of data-poor smartphone users are still
+          blocked from the true power of intelligence.
         </p>
       </section>
 
       <section class="panel">
         <article class="viewer">
           <div class="viewer-top">
-            <div class="viewer-label">Market thesis PDF</div>
-            <div class="viewer-actions">
-              <span>Heading, subheading, then full document</span>
-              <a class="open-pdf" href="./global-ai-access-gap.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
-            </div>
+            <div class="viewer-label">Global AI Access Gap chart</div>
+            <a class="open-pdf" href="./global-ai-access-gap.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
           </div>
           <iframe class="pdf-frame" src="./global-ai-access-gap.pdf#view=FitH"></iframe>
         </article>
 
         <aside class="side">
           <section class="note">
-            <h2>The problem</h2>
+            <h2>The Opportunity</h2>
             <p>
-              AI platforms are still largely designed for users with premium devices, strong
-              connectivity and the ability to absorb high inference costs.
+              ~500M addressable users today own >=4GB RAM phones but are data-poor.
             </p>
           </section>
 
           <section class="note">
-            <h2>The insight</h2>
+            <h2>The Barrier</h2>
             <p>
-              Millions of users in emerging markets own smartphones with enough hardware capacity,
-              but remain excluded by data cost and cloud-heavy AI economics.
+              In emerging markets, high LLM costs and mobile data costs still block access to
+              intelligence at scale.
             </p>
           </section>
 
           <section class="note">
-            <h2>The solution</h2>
-            <ul>
-              <li>Route a large share of low-token queries on-device.</li>
-              <li>Use cloud only when complexity truly requires it.</li>
-              <li>Reduce cost by roughly 50-80% for scalable access.</li>
-            </ul>
+            <h2>The Solution</h2>
+            <p>
+              AI-for-All applies industrial optimization to the AI stack through edge-cloud
+              orchestration logic, routing 70% of <=400 token queries on-device and cutting costs by
+              50-80%.
+            </p>
           </section>
         </aside>
       </section>
