@@ -251,9 +251,15 @@
             if (!footer) return;
 
             const iconRow = Array.from(footer.querySelectorAll("div")).find(function (node) {
-              const links = node.querySelectorAll("a");
-              if (links.length !== 3) return false;
-              const hrefs = Array.from(links).map(function (link) {
+              const directChildren = Array.from(node.children);
+              if (
+                directChildren.length !== 3 ||
+                !directChildren.every(function (child) { return child.tagName === "A"; })
+              ) {
+                return false;
+              }
+
+              const hrefs = directChildren.map(function (link) {
                 return link.getAttribute("href") || "";
               });
               return (
