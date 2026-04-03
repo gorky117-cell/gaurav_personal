@@ -265,6 +265,73 @@
           }, 20, 400);
         }
 
+        function updatePatentText() {
+          runUntilDone(function () {
+            const footer = document.getElementById("contact");
+            if (!footer) return false;
+
+            const patentNode = Array.from(footer.querySelectorAll("span, div, p")).find(function (node) {
+              return node.textContent && node.textContent.indexOf("Patent Filed (Complete Specification)") >= 0;
+            });
+
+            if (!patentNode) return false;
+
+            patentNode.textContent = "Patent Filed (Complete Specification) - App No. 202511059693";
+            return true;
+          }, 20, 400);
+        }
+
+        function updateProgressStage() {
+          runUntilDone(function () {
+            const section = Array.from(document.querySelectorAll("section")).find(function (node) {
+              return node.textContent && node.textContent.indexOf("Current Stage") >= 0;
+            });
+
+            if (!section) return false;
+
+            const cards = Array.from(section.querySelectorAll("div")).filter(function (node) {
+              return (
+                node.className &&
+                typeof node.className === "string" &&
+                node.className.indexOf("justify-between") >= 0 &&
+                node.className.indexOf("rounded-xl") >= 0 &&
+                node.querySelector("span")
+              );
+            });
+
+            if (cards.length < 3) return false;
+
+            const items = [
+              { label: "Cloud Inference", status: "In Progress" },
+              { label: "Edge-to-Cloud Hook", status: "In Progress" },
+              { label: "Android APK", status: "In Progress" }
+            ];
+
+            cards.slice(0, 3).forEach(function (card, index) {
+              const leftWrap = card.firstElementChild;
+              const statusNode = card.lastElementChild;
+              if (!leftWrap || !statusNode) return;
+
+              const dot = leftWrap.querySelector("div");
+              const labelNode = leftWrap.querySelector("span");
+
+              if (labelNode) {
+                labelNode.textContent = items[index].label;
+              }
+
+              if (dot) {
+                dot.className = "w-2.5 h-2.5 rounded-full bg-amber-400";
+              }
+
+              statusNode.className =
+                "text-xs font-semibold text-amber-400 px-3 py-1 rounded-full border border-amber-400/20 bg-amber-400/5";
+              statusNode.textContent = items[index].status;
+            });
+
+            return true;
+          }, 20, 400);
+        }
+
         function enhanceContactLinks() {
           runUntilDone(function () {
             const footer = document.getElementById("contact");
@@ -294,6 +361,8 @@
         updateHeroCopy();
         removeDuplicateContactButton();
         removeDuplicateFooterIcons();
+        updatePatentText();
+        updateProgressStage();
         enhanceContactLinks();
       })();
     </script>
