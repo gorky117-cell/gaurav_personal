@@ -254,6 +254,7 @@ button {
 
 #contact .grid {
   align-items: start;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) minmax(0, 1.15fr);
 }
 
 #contact .mt-12.pt-6 {
@@ -270,14 +271,14 @@ button {
   max-width: 58rem;
   margin: 0 auto;
   display: grid;
-  gap: 1rem;
+  gap: 0.85rem;
 }
 
 .progress-roadmap-item {
   display: grid;
   grid-template-columns: 11rem minmax(0, 1fr);
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .progress-roadmap-badge {
@@ -310,17 +311,39 @@ button {
 .progress-roadmap-text {
   color: hsl(var(--foreground));
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .footer-founder-links {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 0.9rem;
 }
 
 .footer-founder-link {
-  min-height: 1.75rem;
+  min-height: 2rem;
+  gap: 0.55rem;
+}
+
+.footer-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2rem;
+  min-width: 1.2rem;
+  color: hsl(var(--primary));
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.footer-column {
+  min-width: 0;
+}
+
+.footer-ip-column .footer-direct-link {
+  line-height: 1.65;
 }
 
 .footer-founder-cta {
@@ -409,6 +432,7 @@ button {
 
   #contact .grid {
     gap: 1.75rem;
+    grid-template-columns: 1fr;
   }
 
   #contact .contact-link-enhanced {
