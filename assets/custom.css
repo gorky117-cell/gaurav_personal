@@ -267,7 +267,7 @@ button {
 }
 
 .progress-roadmap {
-  max-width: 68rem;
+  max-width: 58rem;
   margin: 0 auto;
   display: grid;
   gap: 1rem;
@@ -311,6 +311,30 @@ button {
   color: hsl(var(--foreground));
   font-size: 1rem;
   line-height: 1.6;
+}
+
+.footer-founder-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-founder-link {
+  min-height: 1.75rem;
+}
+
+.footer-founder-cta {
+  margin-top: 0.35rem;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0 0.9rem;
+  border-radius: 999px;
+  background: hsl(var(--primary) / 0.1);
+  color: hsl(var(--primary));
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 @media (max-width: 1023px) {
@@ -410,5 +434,13 @@ button {
 
   .progress-roadmap-badge {
     width: 100%;
+  }
+
+  .footer-founder-links {
+    width: 100%;
+  }
+
+  .footer-founder-cta {
+    width: auto;
   }
 }
