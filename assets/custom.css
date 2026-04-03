@@ -260,6 +260,59 @@ button {
   margin-top: 2rem;
 }
 
+#contact .footer-direct-link {
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.progress-roadmap {
+  max-width: 68rem;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+}
+
+.progress-roadmap-item {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.progress-roadmap-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.4rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.progress-roadmap-badge.done {
+  background: #18c2a4;
+}
+
+.progress-roadmap-badge.progress {
+  background: #f8a007;
+}
+
+.progress-roadmap-badge.start,
+.progress-roadmap-badge.next {
+  background: #768195;
+}
+
+.progress-roadmap-text {
+  color: hsl(var(--foreground));
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
 @media (max-width: 1023px) {
   .investor-card {
     grid-column: span 6;
@@ -348,5 +401,14 @@ button {
     width: 100%;
     justify-content: flex-start;
     flex-wrap: wrap;
+  }
+
+  .progress-roadmap-item {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .progress-roadmap-badge {
+    width: 100%;
   }
 }
