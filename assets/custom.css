@@ -318,11 +318,15 @@ button {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.9rem;
+  gap: 0.35rem;
+}
+
+.footer-founder-links > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0 !important;
 }
 
 .footer-founder-link {
-  min-height: 2rem;
+  min-height: 1.35rem;
   gap: 0.55rem;
 }
 
