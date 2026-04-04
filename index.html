@@ -377,6 +377,25 @@
           }, 20, 400);
         }
 
+        function updateOptimizedCloudText() {
+          runUntilDone(function () {
+            const paragraphs = Array.from(document.querySelectorAll("p"));
+            const target = paragraphs.find(function (node) {
+              return (
+                (node.textContent || "").trim() ===
+                "Compressed queries routed to cost-optimized cloud endpoints only when needed."
+              );
+            });
+
+            if (!target) return false;
+
+            target.textContent =
+              "Queries routed to cost-optimized cloud endpoints only when edge confidence is insufficient .";
+
+            return true;
+          }, 20, 400);
+        }
+
         installDocsEnhancer();
         updateHeroCopy();
         removeDuplicateContactButton();
@@ -384,6 +403,7 @@
         updatePatentText();
         updateProgressStage();
         enhanceContactLinks();
+        updateOptimizedCloudText();
       })();
     </script>
     <script data-pplx-inline-edit>
