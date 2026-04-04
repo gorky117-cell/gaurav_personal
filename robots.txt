@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.aiforall.ltd/sitemap.xml
+Sitemap: https://gaurav.aiforall.ltd/sitemap.xml
