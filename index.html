@@ -89,6 +89,9 @@
     <script>
       (function () {
         const DOCS_DATA_URL = "./assets/docs-data.json";
+        const APP_URL = "https://www.aiforall.ltd";
+        const APP_LABEL = "Try App";
+        let appLinkObserverInstalled = false;
 
         async function loadDocsData() {
           try {
@@ -98,6 +101,82 @@
           } catch (error) {
             return [];
           }
+        }
+
+        function createAppLink(variant) {
+          const link = document.createElement("a");
+          link.href = APP_URL;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.className = "app-entry-link app-entry-link--" + variant;
+          link.setAttribute("aria-label", "Open AI-for-All app");
+          link.setAttribute("title", "Open AI-for-All app");
+          link.setAttribute(
+            "data-testid",
+            variant === "footer" ? "footer-app-link" : variant === "mobile" ? "nav-mobile-app" : "nav-app"
+          );
+
+          const mark = document.createElement("span");
+          mark.className = "app-entry-link__mark";
+
+          const markCore = document.createElement("span");
+          markCore.className = "app-entry-link__mark-core";
+          mark.appendChild(markCore);
+
+          const label = document.createElement("span");
+          label.className = "app-entry-link__label";
+          label.textContent = APP_LABEL;
+
+          link.appendChild(mark);
+          link.appendChild(label);
+
+          return link;
+        }
+
+        function insertAfter(referenceNode, nextNode) {
+          if (!referenceNode || !referenceNode.parentNode || !nextNode) return false;
+          referenceNode.parentNode.insertBefore(nextNode, referenceNode.nextSibling);
+          return true;
+        }
+
+        function ensureDesktopNavAppLink() {
+          const contactButton = document.querySelector('button[data-testid="nav-contact"]');
+          if (!contactButton || !contactButton.parentNode) return false;
+
+          if (contactButton.parentNode.querySelector('[data-testid="nav-app"]')) {
+            return true;
+          }
+
+          return insertAfter(contactButton, createAppLink("nav"));
+        }
+
+        function ensureMobileNavAppLink() {
+          const contactButton = document.querySelector('button[data-testid="nav-mobile-contact"]');
+          if (!contactButton || !contactButton.parentNode) return false;
+
+          if (contactButton.parentNode.querySelector('[data-testid="nav-mobile-app"]')) {
+            return true;
+          }
+
+          return insertAfter(contactButton, createAppLink("mobile"));
+        }
+
+        function installAppLinkEnhancer() {
+          runUntilDone(function () {
+            return ensureDesktopNavAppLink();
+          }, 20, 400);
+
+          ensureMobileNavAppLink();
+
+          if (appLinkObserverInstalled || !document.body) return;
+
+          const observer = new MutationObserver(function () {
+            ensureDesktopNavAppLink();
+            ensureMobileNavAppLink();
+          });
+
+          observer.observe(document.body, { childList: true, subtree: true });
+          appLinkObserverInstalled = true;
         }
 
         function buildCard(item) {
@@ -274,11 +353,7 @@
               '<div class="max-w-6xl mx-auto px-6">' +
               '<div class="grid md:grid-cols-3 gap-10">' +
               '<div class="footer-column footer-brand-column">' +
-              '<div class="flex items-center gap-2.5 mb-2">' +
-              '<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"></path></svg>' +
-              '<span class="font-bold tracking-tight">AI-for-All</span>' +
-              '</div>' +
-              '<a href="https://www.aiforall.ltd" class="footer-direct-link contact-link-enhanced footer-founder-link text-sm text-primary hover:underline mb-3 inline-flex" target="_blank" rel="noopener noreferrer">www.aiforall.ltd</a>' +
+              '<div class="footer-brand-actions" data-footer-app-slot></div>' +
               '<p class="text-sm text-muted-foreground leading-relaxed">Edge-first AI infrastructure reducing GPU costs for the next billion users.</p>' +
               '</div>' +
               '<div class="footer-column footer-founder-column">' +
@@ -286,6 +361,7 @@
               '<p class="text-sm font-medium mb-3">Gaurav Kumar Singh</p>' +
               '<div class="footer-founder-links space-y-2.5">' +
               '<a href="mailto:gaurav@aiforall.ltd" class="footer-direct-link contact-link-enhanced footer-founder-link text-sm text-primary hover:underline inline-flex"><span class="footer-link-icon">✉</span><span>gaurav@aiforall.ltd</span></a>' +
+              '<a href="https://calendly.com/gaurav-aiforall/" target="_blank" rel="noopener noreferrer" class="footer-direct-link contact-link-enhanced footer-founder-link text-sm text-muted-foreground hover:text-primary inline-flex transition-colors"><span class="footer-link-icon">+</span><span>Book a meeting</span></a>' +
               '<a href="https://www.linkedin.com/in/gaurav-kumar-s-b9347129/" target="_blank" rel="noopener noreferrer" class="footer-direct-link contact-link-enhanced footer-founder-link text-sm text-muted-foreground hover:text-primary inline-flex transition-colors"><span class="footer-link-icon">in</span><span>LinkedIn Profile</span></a>' +
               '</div>' +
               '</div>' +
@@ -298,6 +374,12 @@
               '<p class="text-xs text-muted-foreground">&copy; 2026 Gaurav Kumar Singh. All rights reserved.</p>' +
               '</div>' +
               '</div>';
+
+            const footerAppSlot = footer.querySelector("[data-footer-app-slot]");
+            if (footerAppSlot && !footer.querySelector('[data-testid="footer-app-link"]')) {
+              footerAppSlot.appendChild(createAppLink("footer"));
+            }
+
             return true;
           }, 20, 400);
         }
@@ -397,6 +479,7 @@
         }
 
         installDocsEnhancer();
+        installAppLinkEnhancer();
         updateHeroCopy();
         removeDuplicateContactButton();
         removeDuplicateFooterIcons();
