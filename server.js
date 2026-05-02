@@ -76,6 +76,21 @@ app.post("/api/request-demo", async (req, res) => {
       console.error("Resend API error:", error);
       return res.status(502).send(`Unable to send email: ${error.message || "unknown error"}`);
     }
+
+    const autoReply = await resend.emails.send({
+      from: requestDemoFrom,
+      to: [email],
+      subject: "We received your AI for ALL demo request",
+      html: `
+        <p>Hi ${esc(name)},</p>
+        <p>Thank you for requesting a demo of AI for ALL.</p>
+        <p>We have received your message and will come back soon with demo details or the next step.</p>
+      `
+    });
+    if (autoReply.error) {
+      console.error("Resend auto-reply error:", autoReply.error);
+    }
+
     console.log("Resend sent email id:", data?.id || "no-id");
     return res.redirect(303, redirectTo);
   } catch (error) {
