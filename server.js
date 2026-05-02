@@ -65,13 +65,18 @@ app.post("/api/request-demo", async (req, res) => {
   `;
 
   try {
-    await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: requestDemoFrom,
       to: [requestDemoTo],
       replyTo: email,
       subject,
       html
     });
+    if (error) {
+      console.error("Resend API error:", error);
+      return res.status(502).send(`Unable to send email: ${error.message || "unknown error"}`);
+    }
+    console.log("Resend sent email id:", data?.id || "no-id");
     return res.redirect(303, redirectTo);
   } catch (error) {
     console.error("Resend send failed:", error);
