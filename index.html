@@ -89,7 +89,7 @@
     <script>
       (function () {
         const DOCS_DATA_URL = "./assets/docs-data.json";
-        const APP_URL = "https://www.aiforall.ltd";
+        const APP_URL = "./request-demo.html";
         const APP_LABEL = "Request Demo";
         let appLinkObserverInstalled = false;
 
@@ -109,8 +109,8 @@
           link.target = "_blank";
           link.rel = "noopener noreferrer";
           link.className = "app-entry-link app-entry-link--" + variant;
-          link.setAttribute("aria-label", "Open AI-for-All app");
-          link.setAttribute("title", "Open AI-for-All app");
+          link.setAttribute("aria-label", "Request a demo from AI-for-All");
+          link.setAttribute("title", "Request a demo from AI-for-All");
           link.setAttribute(
             "data-testid",
             variant === "footer" ? "footer-app-link" : variant === "mobile" ? "nav-mobile-app" : "nav-app"
