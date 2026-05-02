@@ -151,11 +151,14 @@
 
       <section class="hero">
         <h1>Request a demo of AI for ALL</h1>
-        <p>Complete the form below and I will respond with demo access details, a recorded walkthrough, or the next step for app access.</p>
+        <p>Complete the form below and we will respond with demo access details, a recorded walkthrough, or the next step for app access.</p>
       </section>
 
       <section class="card">
-        <form id="demoForm">
+        <form id="demoForm" action="/api/request-demo" method="POST">
+          <input id="nextUrl" type="hidden" name="next_url" value="/request-demo-thanks.html" />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
           <div class="form-group">
             <label for="name">Name *</label>
             <input id="name" name="name" type="text" placeholder="Your name" required />
@@ -180,38 +183,14 @@
             <button type="submit" class="button-primary">Send request</button>
             <a href="/?" class="button-secondary">Back to home</a>
           </div>
-          <p class="footnote">If email does not open, click here to open it directly: <a href="mailto:gaurav@aiforall.ltd" style="color: #12b6d4; text-decoration: underline;">gaurav@aiforall.ltd</a></p>
+          <p class="footnote">If you prefer, you can also click this email address directly: <a href="mailto:gaurav@aiforall.ltd" style="color: #12b6d4; text-decoration: underline;">gaurav@aiforall.ltd</a></p>
         </form>
       </section>
     </main>
 
     <script>
-      document.getElementById('demoForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const company = document.getElementById('company').value.trim();
-        const message = document.getElementById('message').value.trim();
-
-        const subject = encodeURIComponent('Request Demo - AI FOR ALL');
-        const bodyLines = [
-          'Hi Gaurav,',
-          '',
-          'I would like to request a demo of AI for ALL.',
-          '',
-          `Name: ${name}`,
-          `Email: ${email}`,
-          company ? `Company / Role: ${company}` : '',
-          '',
-          'Message:',
-          message,
-          '',
-          'Thanks,'
-          `${name}`
-        ];
-        const body = encodeURIComponent(bodyLines.filter(Boolean).join('\n'));
-        const mailto = `mailto:gaurav@aiforall.ltd?subject=${subject}&body=${body}`;
-        window.location.href = mailto;
+      document.getElementById('demoForm').addEventListener('submit', function () {
+        document.getElementById('nextUrl').value = '/request-demo-thanks.html';
       });
     </script>
   </body>
