@@ -180,13 +180,14 @@
         }
 
         function buildCard(item) {
+          const isDeck = item.variant === "deck";
           const card = document.createElement("a");
           card.className = "investor-card";
-          card.href = item.url;
-          card.target = item.external ? "_blank" : "_self";
-          card.rel = item.external ? "noopener noreferrer" : "";
+          card.href = isDeck ? APP_URL : item.url;
+          card.target = isDeck || item.external ? "_blank" : "_self";
+          card.rel = isDeck || item.external ? "noopener noreferrer" : "";
 
-          if (item.variant === "deck") {
+          if (isDeck) {
             card.classList.add("investor-card-deck");
           }
 
@@ -212,8 +213,9 @@
 
           const footer = document.createElement("div");
           footer.className = "investor-card-footer";
-          footer.innerHTML =
-            '<span class="investor-open-text">Open material</span><span class="investor-arrow">?</span>';
+          footer.innerHTML = isDeck
+            ? '<span class="investor-open-text">Request Demo</span><span class="investor-arrow">?</span>'
+            : '<span class="investor-open-text">Open material</span><span class="investor-arrow">?</span>';
 
           card.appendChild(meta);
           card.appendChild(heading);
