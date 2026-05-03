@@ -465,14 +465,14 @@
             const target = paragraphs.find(function (node) {
               return (
                 (node.textContent || "").trim() ===
-                "Compressed queries routed to cost-optimized cloud endpoints only when needed."
+                "Queries are seamlessly escalated to the most efficient compute layer when needed."
               );
             });
 
             if (!target) return false;
 
             target.textContent =
-              "Queries routed to cost-optimized cloud endpoints only when edge confidence is insufficient .";
+              "Queries are seamlessly escalated to the most efficient compute layer when needed.";
 
             return true;
           }, 20, 400);
