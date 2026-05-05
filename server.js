@@ -48,8 +48,8 @@ function buildDemoConfirmationHtml(name) {
                 <td align="center" style="background:#020607;padding:34px 28px 30px;border-bottom:1px solid #102126;">
                   <img src="https://www.aiforall.ltd/assets/ai-for-all-orb-final.png" width="128" height="128" alt="AI for ALL" style="display:block;width:128px;height:128px;margin:0 auto 18px;border:0;">
                   <div style="font-size:12px;line-height:1.4;letter-spacing:3px;text-transform:uppercase;color:#13e6c2;font-weight:700;margin-bottom:12px;">Edge-first AI infrastructure</div>
-                  <h1 style="margin:0;color:#f7fbfc;font-size:28px;line-height:1.18;font-weight:800;">We received your demo request</h1>
-                  <p style="margin:12px 0 0;color:#9fb2bf;font-size:15px;line-height:1.7;">Thank you for your interest in AI for ALL.</p>
+                  <h1 style="margin:0;color:#f7fbfc;font-size:28px;line-height:1.18;font-weight:800;">AI for ALL Demo Request</h1>
+                  <p style="margin:12px 0 0;color:#9fb2bf;font-size:15px;line-height:1.7;">Your request is with our founder team.</p>
                 </td>
               </tr>
               <tr>
